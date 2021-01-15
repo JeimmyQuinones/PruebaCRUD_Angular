@@ -27,10 +27,10 @@
                 <td>{{item.Numeroidentificacion}}</td>
                 <td>{{item.Email}}</td>
                 <td>
-                    <button type="button" class="btn btn-warning" (click)="Editar(content,item.IdUsuario)">
+                    <button type="button" class="btn btn-warning" style="margin: 5px;" (click)="Editar(content,item.IdUsuario)">
                             <i class="fas fa-edit"></i>
                     </button>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger" (click)="openmodalEliminar(Eliminar,item.IdUsuario,item.Nombre)">
                             <i class="fas fa-trash-alt"></i>
                     </button>
                 </td>
@@ -56,7 +56,7 @@
                             <label class="col-3 col-form-label ">Nombre:</label>
                             <div class="col-8 ">
 
-                                <input class="form-control " type="text " placeholder="Nombre " formControlName="nombre" [class.is-invalid]="nombreNovalido " [readOnly]="loadingsave">
+                                <input class="form-control " type="text " placeholder="Nombre " formControlName="Nombre" [class.is-invalid]="nombreNovalido " [readOnly]="loadingsave">
                                 <small *ngIf="nombreNovalido " class="text-danger ">Ingrese 5 letras</small>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             <label class="col-3 col-form-label ">Apellido:</label>
                             <div class="col-8 ">
 
-                                <input class="form-control " type="text " placeholder="Apellido " formControlName="apellido" [class.is-invalid]="apellidoNovalido " [readOnly]="loadingsave">
+                                <input class="form-control " type="text " placeholder="Apellido " formControlName="Apellidos" [class.is-invalid]="apellidoNovalido " [readOnly]="loadingsave">
                                 <small *ngIf="apellidoNovalido " class="text-danger ">Ingrese 5 letras</small>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <label class="col-3 col-form-label ">Identificación:</label>
                             <div class="col-8 ">
 
-                                <input class="form-control " type="number " placeholder="Identiciación" formControlName="numeroidentificacion" [class.is-invalid]="identificacionNovalido " [readOnly]="loadingsave">
+                                <input class="form-control " type="number " placeholder="Identiciación" formControlName="Numeroidentificacion" [class.is-invalid]="identificacionNovalido " [readOnly]="loadingsave">
                                 <small *ngIf="identificacionNovalido " class="text-danger ">Ingrese minimo 3 numeros</small>
                             </div>
                         </div>
@@ -80,14 +80,14 @@
                             <label class="col-3 col-form-label ">Correo:</label>
                             <div class="col-8 ">
 
-                                <input class="form-control " type="email " placeholder="Correo " formControlName="correo" [class.is-invalid]="correoNovalido " [readOnly]="loadingsave">
+                                <input class="form-control " type="email " placeholder="Correo " formControlName="Email" [class.is-invalid]="correoNovalido " [readOnly]="loadingsave">
                                 <small *ngIf="correoNovalido " class="text-danger ">Correo invalido</small>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-warning" (click)="closemodal() " [disabled]="loadingsave">Cancelar</button>
+                    <button type="button" class="btn btn-warning" (click)="closemodal() " style="margin: 5px;" [disabled]="loadingsave">Cancelar</button>
                     <button class="btn btn-success" type="submit" [disabled]="loadingsave"> 
                         <i  [ngClass]="{'fa-save':!loadingsave,'fa-sync fa-spin':loadingsave}"
                         class="fa"></i>
@@ -96,6 +96,32 @@
 
                 </div>
             </form>
+        </div>
+    </div>
+
+</ng-template>
+
+
+<ng-template #Eliminar>
+
+    <div class="moalletter ">
+        <div class=" modal-content ">
+            <div class="modal-body ">
+                <div style="text-align: center;">
+                    <i class="fas fa-exclamation-triangle" style="color: orange; font-size: 400%;"></i>
+
+                    <br>
+                    <br>
+                    <h5>Esta seguro de eliminar el usuario {{NombreEliminar}}</h5>
+                    <br>
+                    <button class="btn btn-danger col-4" style="margin: 5px;" type="button" (click)="DeleteUsuario()"> 
+                        <span >Eliminar</span> 
+                </button>
+                    <button class="btn btn-warning col-4" type="button" (click)="closemodalEliminar()"> 
+                    <span >Cancelar</span>
+                 </button>
+                </div>
+            </div>
         </div>
     </div>
 
